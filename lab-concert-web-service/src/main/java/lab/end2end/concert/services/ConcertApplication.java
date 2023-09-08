@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
+@EntityScan(basePackages = {"lab.end2end.concert.domain"})
 //TODO: add annotation to scan for entities
 public class ConcertApplication {
     public static void main(String[] args) {

@@ -15,15 +15,18 @@ import java.time.LocalDateTime;
  * Class to represent a Concert. A Concert is characterised by an unique ID,
  * title, date and time, and a featuring Performer.
  */
+@Entity
 //TODO: add annotation for entity
 public class Concert {
-	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	//TODO: add annotation for id
     private Long id;
     private String title;
-
+   
     private LocalDateTime date;
-
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "performer_id")
   //TODO: add annotation for relationship
     private Performer performer;
 
@@ -61,6 +64,8 @@ public class Concert {
     public void setTitle(String title) {
         this.title = title;
     }
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     //TODO: add the JSONSerialze and JsonDeserialize
     public LocalDateTime getDate() {
         return date;
